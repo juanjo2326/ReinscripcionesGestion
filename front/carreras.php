@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Consulta de Carreras</title>
-	<link rel="stylesheet" type="text/css" href="./estilos/estilos.css">
+	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
@@ -32,8 +32,6 @@
 ?>
 </table>
     </center>
-<section>
-</section>
 </html>
 
 

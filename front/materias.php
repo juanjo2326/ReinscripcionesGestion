@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Consulta de materias por carrera</title>
-	<link rel="stylesheet" type="text/css" href="./estilos/estilos.css">
+	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
@@ -32,7 +32,7 @@
 </table>
 <br>
 <form id="formulario" method="get">
-        <input type="txt" name="idC" value="" placeholder="Introzduca el iD de la carrera"><br>
+        <input type="txt" name="idC" value="" placeholder="Introzduca el iD de la carrera" required="true"><br><br>
         <button type="sumit" name="button">Buscar</button>
 </form>
 <br>
