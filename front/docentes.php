@@ -1,52 +1,45 @@
-<?php
-include 'conexion.php';
-?> 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="utf-8"/>
-	<title>consulta de docentes</title>
-	<link rel="stylesheet" type="text/css" href="./estilos/estilos.css">
-	<script type="text/javascript"  href="./js/scripts.js"></script>
+    <meta charset="utf-8"/>
+    <title>consulta de docentes</title>
+    <link rel="stylesheet" type="text/css" href="./estilos/estilos.css">
+    <script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
-	<header>
-		<h1>Consulta de docentes</h1>
-    </header>
-    <br>
-    <center>
-        <table>
-            <thead>
-            <tr>
-                <td>numero de Docente</td>
-                <td>Nombre</td>
-                <td>Apellido Paterno</td>
-                <td>Apellido Matermo</td>
-                <td>Areas</td>
-            </tr>
-            </thead>
-            <?php
-            $con = $mysql->query("SELECT * FROM docentes;");
-
-            if ($con->num_rows > 0){
-        
-            while ($f = $con->fetch_array()){
-            ?>
-            <tr>
-            
-                <td><?php echo $f['idDocente']; ?></td>
-                <td><?php echo $f['nombres']; ?></td>
-                <td><?php echo $f['apellidoP']; ?></td>
-                <td><?php echo $f['apellidoM']; ?></td>
-                <td><?php echo $f['idAreas']; ?></td>
-            </tr>
-            <?php
-            }
-
-        }
-            ?>
-    
-        </table>
+       <center> 
+        <h1>Consulta de docentes</h1>
+            <table>
+                <tr>
+                    <td>idDocente</td>
+                    <td>area</td>
+                    <td>nombre</td>
+                    <td>apellido Paterno</td>
+                    <td>apellido Matermo</td>
+                </tr>
+<?php 
+    $url="http://127.0.0.1:8181/reinscripciones/docentes";
+    $json=file_get_contents($url);
+    $datos=json_decode($json,true);
+    $long=count($datos);
+        for ($i=0; $i < $long; $i++) { 
+            $idDocente=$datos[$i]['idDocente'];
+            $area=$datos[$i]['area'];
+            $nombre=$datos[$i]['nombre'];
+            $apellidoP=$datos[$i]['apellidoP'];
+            $apellidoM=$datos[$i]['apellidoM'];
+            echo "
+                <tr>
+                    <td><label>".$idDocente."</label></td>
+                    <td><label>".$area."</label></td>
+                    <td><label>".$nombre."</label></td>
+                    <td><label>".$apellidoP."</label></td>
+                    <td><label>".$apellidoM."</label></td>
+                </tr>
+            ";
+}
+?>
+</table>
     </center>
 <section>
 </section>
