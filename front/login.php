@@ -9,13 +9,19 @@
 <body>
 	<center>	
         <h1>Bienvenido</h1>
-        
+  <?php 
+$_GET['usuario']="";
+$_GET['contra']="";
+  ?>      
+
     <form id="formulario" method="get" action="">
-       	<input type="text" name="usuario" placeholder="Usuario" class=""><br><br>
-        <input type="text" name="contra" placeholder="Contraseña" class=""><br><br>
+       	<input type="text" name="usuario" placeholder="Usuario" class="" value=""><br><br>
+        <input type="text" name="contra" placeholder="Contraseña" class="" value=""><br><br>
 		<button type="sumit" name="button">Entrar</button>
 	</form>            
 <?php 
+$usuario="";
+$contra="";
 $usuario=$_GET['usuario'];
 $contra=$_GET['contra'];
 $verificar=false;
