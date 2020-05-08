@@ -107,7 +107,3 @@ for ($i=0; $i <$long ; $i++) {
 <section>
 </section>
 </html>
-
-
-
-

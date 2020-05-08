@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 	<meta charset="utf-8"/>
+
 	<title>Login</title>
 	<link rel="stylesheet" type="text/css" href="./estilos/estilos.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
@@ -36,6 +37,4 @@ if ($usuario!=""&&$contra!="") {
 ?>
 </table>
     </center>
-<section>
-</section>
 </html>
