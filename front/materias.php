@@ -7,12 +7,15 @@
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
+    <header>
+
+    </header>
 	 <center>	
-        <h1>Consulta de materias por carrera</h1>
-<table>
+        <h1>Consulta de materias por carrera</h1><br>
+<table >
                 <tr>
-                    <td>idCarrera</td>
-                    <td>nombre</td>
+                    <td>Numero</td>
+                    <td>Nombre de la carrera</td>
                 </tr>
 <?php 
     $url="http://127.0.0.1:8181/reinscripciones/carreras";
@@ -22,30 +25,26 @@
         for ($i=0; $i < $long; $i++) { 
             $idCarrera=$datos[$i]['idCarrera'];
             $nombre=$datos[$i]['nombre'];
-            echo "
-                <tr>
-                    <td><label>".$idCarrera."</label></td>
-                    <td><label>".$nombre."</label></td>
-                </tr> ";
+            echo '<tr  class="coco">
+                    <td><label>'.$idCarrera.'</label></td>
+                    <td><label>'.$nombre.'</label></td>
+                </tr> ';
 }
 ?>
 </table>
 <br>
 <form id="formulario" method="get">
-        <input type="txt" name="idC" value="" placeholder="Introzduca el iD de la carrera" required="true"><br><br>
-        <button type="sumit" name="button">Buscar</button>
+        <input type="number" name="idC" value="" placeholder="Numero " required="true" class="num"><br><br>
+        <input type="submit" name="button" value="Buscar" class="aceptar">
 </form>
-<br>
+<br> 
 <table>
             <tr>
-                <td>creditos</td>
-                <td>teorica</td>
-                <td>practica</td>
-                <td>idCarrera</td>
-                <td>idDocente</td>
-                <td>idMateria</td>
-                <td>nombre</td>
-                <td>semestre</td>
+                <td>Creditos</td>
+                <td>Teorica</td>
+                <td>Practica</td>
+                <td>Nombre</td>
+                <td>Semestre</td>
             </tr>
 
 <?php 
@@ -60,9 +59,6 @@
     $creditos=" ";
     $teorica=" ";
     $practica=" ";
-    $idCarrera=" ";
-    $idDocente=" ";
-    $idMateria=" ";
     $nombre=" ";
     $semestre=" ";
 
@@ -80,20 +76,14 @@ for ($i=0; $i <$long ; $i++) {
     $creditos=$datos[$i]['creditos'];
     $teorica=$datos[$i]['teorica'];
     $practica=$datos[$i]['practica'];
-    $idCarrera=$datos[$i]['idCarrera'];
-    $idDocente=$datos[$i]['idDocente'];
-    $idMateria=$datos[$i]['idMateria'];
     $nombre=$datos[$i]['nombre'];
     $semestre=$datos[$i]['semestre'];
 
         echo '
-            <tr>
+            <tr  class="coco">
                 <td><label>'.$creditos.'</label></td>
                 <td><label>'.$teorica.'</label></td>
                 <td><label>'.$practica.'</label></td>
-                <td><label>'.$idCarrera.'</label></td>
-                <td><label>'.$idDocente.'</label></td>
-                <td><label>'.$idMateria.'</label></td>
                 <td><label>'.$nombre.'</label></td>
                 <td><label>'.$semestre.'</label></td>
             </tr>';

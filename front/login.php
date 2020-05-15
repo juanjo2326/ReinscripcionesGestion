@@ -7,12 +7,15 @@
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
+    <header>
+
+    </header>
 	<center>	
-        <h1>Bienvenido</h1>    
+        <h1>Bienvenido</h1><br>
     <form id="formulario" method="get" action="">
-        <input type="text" name="usuario" placeholder="Usuario" class="" value="" required="true"><br><br>
-        <input type="text" name="contra" placeholder="Contraseña" class="" value="" required="true"><br><br>
-		<button type="sumit" name="button">Entrar</button>
+        <input type="text" name="usuario" placeholder="Usuario" class="txcorto" required="true"><br><br>
+        <input type="password" name="contra" placeholder="Contraseña" class="txcorto" required="true"><br><br>
+        <input type="submit" name="button" value="Entrar" class="aceptar">
 	</form>            
 <?php
 $verificar=false;
@@ -34,10 +37,11 @@ if (isset($_GET['usuario'])&& $_GET['usuario']!=""&&$_GET['contra']!="") {
     	echo "<label>".$usuario."</label><br>";
     	echo '<script type="text/javascript"> window.location.href="index.php";</script>';
     }else{
-    	echo "usuario no registrado";
+        echo '<script type="text/javascript"> alert("usuario no registrado");</script>';
     }
 }
 ?>
-    </center>
+</center>
+
 </body>
 </html>

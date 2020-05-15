@@ -1,6 +1,4 @@
-<?php
-include 'conexion.php';
-?> 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,36 +13,105 @@ include 'conexion.php';
     </header>
     <br>
     <center>
-        <table>
+    <div style="display: flex;">
+      <div>
+        <table border="2px">
             <tr>
-                <td>numero</td>
-                <td>Nombre del alumno</td>
-                <td>Materia </td>
-                <td>Acreditada</td>
-                <td>No Acreditada</td>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
             </tr>
-            <?php
-            $con = $mysql->query("SELECT * FROM kardex;");
-
-            if ($con->num_rows > 0){
-        
-            while ($f = $con->fetch_array()){
-            ?>
-            <tr>
-            
-                <td><?php echo $f['idKardex']; ?></td>
-                <td><?php echo $f['idAlumno']; ?></td>
-                <td><?php echo $f['idMateria']; ?></td>
-                <td><?php echo $f['acreditada']; ?></td>
-                <td><?php echo $f['noacreditada']; ?></td>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
             </tr>
-            <?php
-            }
-
-        }
-            ?>
-    
         </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table border="2px">
+            <tr>
+                <td colspan="5" style="text-align-last: center;">aplicaciones android para moviles<br>WWW-999</td>
+            </tr>
+            <tr><td>____</td>
+                <td>_2_ </td>
+                <td>_3_</td>
+                <td>_5_</td>
+            </tr>
+        </table>
+    </div>
+
+</div> 
     </center>
 <section>
 </section>
