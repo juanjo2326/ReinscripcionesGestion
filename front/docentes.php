@@ -1,21 +1,24 @@
+<?php 
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8"/>
-    <title>consulta de docentes</title>
+    <title>Docentes</title>
     <link rel="stylesheet" type="text/css" href="./css/estilos.css">
     <script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
-    <header>
-
+       <center>
+            <header>
+        <h1>Consulta de docentes</h1>
     </header>
-       <center> 
-        <h1>Consulta de docentes</h1><br> 
-            <table cellspacing="15px">
+
+        <br> 
+            <table cellspacing="15px" id="tab">
                 <tr>
-                    <td>Area</td>
-                    <td>Nombre</td>
+                    <td>Nombres</td>
                     <td>Apellido Paterno</td>
                     <td>Apellido Matermo</td>
                 </tr>
@@ -25,14 +28,12 @@
     $datos=json_decode($json,true);
     $long=count($datos);
         for ($i=0; $i < $long; $i++) { 
-            $area=$datos[$i]['area'];
-            $nombre=$datos[$i]['nombre'];
+            $nombres=$datos[$i]['nombres'];
             $apellidoP=$datos[$i]['apellidoP'];
             $apellidoM=$datos[$i]['apellidoM'];
             echo '
                 <tr class="coco">
-                    <td><label>'.$area.'</label></td>
-                    <td><label>'.$nombre.'</label></td>
+                    <td><label>'.$nombres.'</label></td>
                     <td><label>'.$apellidoP.'</label></td>
                     <td><label>'.$apellidoM.'</label></td>
                 </tr>

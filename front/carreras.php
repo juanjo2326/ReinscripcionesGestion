@@ -1,19 +1,23 @@
+<?php 
+session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 
 	<meta charset="utf-8"/>
-	<title>Consulta de Carreras</title>
+	<title>Carreras</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
-	<header>
-
+	<center>
+    <header>
+<h1>Consulta de Carreras</h1>
     </header>
-    <center>	
-        <h1>Consulta de Carreras</h1><br> 
-            <table >
+    	
+        <br> 
+            <table id="tab">
                 <tr>
                     <td>Carreras</td>
                 </tr>
@@ -23,9 +27,9 @@
     $datos=json_decode($json,true);
     $long=count($datos);
         for ($i=0; $i < $long; $i++) { 
-            $nombre=$datos[$i]['nombre'];
+            $carrera=$datos[$i]['carrera'];
             echo '  <tr  class="coco">
-                    <td><label>'.$nombre.'</label></td>
+                    <td><label>'.$carrera.'</label></td>
                     </tr> ';
 }
 ?>
