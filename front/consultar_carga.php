@@ -2,11 +2,11 @@
 session_start(); 
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 	<title>Carga académica por alumno</title>
 	<meta charset="utf-8">
-	<link rel="shortcut icon" type="image/x-icon" href="./imagenes/tec.jpg">
+    <link rel="shortcut icon" type="image/x-icon" href="./imagenes/logo.jpg">
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 </head>
 <body> 
@@ -14,11 +14,11 @@ session_start();
 <header>
    <h1>Instituto Tecnológico de La Piedad</h1>
 </header>
-
-<br>
 <form id="formulario" method="get">
-    <?php 
+    <?php
+
 if (isset($_SESSION['noControl'])) {
+    $_GET['idC']=$_SESSION['noControl'];
     echo '<input type="hidden" name="idC" value="'.$_SESSION['noControl'].'" placeholder="Numero de control " required="true" class="num"><br><br>';
 }else{
         echo '<input type="number" name="idC" value="" placeholder="Numero de control " required="true" class="num"><br><br>';
@@ -33,8 +33,21 @@ if (isset($_SESSION['noControl'])) {
         <input type="submit" name="button" value="Buscar" class="aceptar">
 
 </form>
-<br> 
-<?php echo '<h2 style="color: #ece5e5;">No. Control: '.$_GET['idC'].", año: ".$_GET['año'].", periodo: ".$_GET['periodo'].'</h2>'; ?>
+<?php 
+
+if (empty($_GET['idC'])) {
+    echo '<br><h2 style="color: white">No selecciono No.control</h2>';
+}
+if (empty($_GET['periodo'])) {
+    echo '<br><h2 style="color: white">No selecciono periodo</h2>';
+}
+
+if (isset($_GET['idC'])&&isset($_GET['año'])&&isset($_GET['periodo'])
+        &&$_GET['idC']!=""&&$_GET['año']!=0 &&$_GET['periodo']!="") {
+echo '<h2 style="color: #ece5e5;">No. Control: '.$_GET['idC'].", año: ".$_GET['año'].", periodo: ".$_GET['periodo'].'</h2>'; 
+}
+?>
+
 <br>
 <table id="tab">
             <tr>
@@ -46,7 +59,8 @@ if (isset($_SESSION['noControl'])) {
                 <td>Practica</td>
             </tr>
 <?php 
-    if (isset($_GET['idC'])&&$_GET['idC']!=null) {
+    if (isset($_GET['idC'])&&isset($_GET['año'])&&isset($_GET['periodo'])
+        &&$_GET['idC']!=""&&$_GET['año']!=0 &&$_GET['periodo']!="") {
     $url="http://127.0.0.1:8181/reinscripciones/carga/".$_GET['idC']."/".$_GET['año']."/".$_GET['periodo'];
     $json=file_get_contents($url);
     $datos=json_decode($json,true);

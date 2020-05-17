@@ -14,7 +14,6 @@ session_start();
     <header>
         <h1>Consulta de materias por carrera</h1>
     </header>
-    <br>
 <form id="formulario" method="get">
 
 <select name="idC">
@@ -53,18 +52,13 @@ if (isset($_GET['idC'])&&$_GET['idC']!=null) {
     $long2=count($datos2);
     if ($long2>0) {
 for ($i=0; $i <$long2 ; $i++) { 
-    $creditos=$datos2[$i]['creditos'];
-    $teorica=$datos2[$i]['teorica'];
-    $practica=$datos2[$i]['practica'];
-    $materia=$datos2[$i]['materia'];
-    $semestre=$datos2[$i]['semestre'];
         echo '
             <tr  class="coco">
-                <td><label>'.$creditos.'</label></td>
-                <td><label>'.$teorica.'</label></td>
-                <td><label>'.$practica.'</label></td>
-                <td><label>'.$materia.'</label></td>
-                <td><label>'.$semestre.'</label></td>
+                <td><label>'.$datos2[$i]['creditos'].'</label></td>
+                <td><label>'.$datos2[$i]['teorica'].'</label></td>
+                <td><label>'.$datos2[$i]['practica'].'</label></td>
+                <td><label>'.$datos2[$i]['materia'].'</label></td>
+                <td><label>'.$datos2[$i]['semestre'].'</label></td>
             </tr>';
 }
 }else{
@@ -74,6 +68,5 @@ for ($i=0; $i <$long2 ; $i++) {
 ?>
         </table>
     </center>
-<section>
-</section>
+</body>
 </html>

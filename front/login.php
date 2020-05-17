@@ -48,6 +48,7 @@ $_SESSION['apellidoP']=$datos['apellidoP'];
 $_SESSION['apellidoM']=$datos['apellidoM'];
 $_SESSION['semestre']=$datos['semestre'];
 $_SESSION['carrera']=$datos['carrera'];
+$_SESSION['idCarrera']=$datos['idCarrera'];
 
 echo '<script type="text/javascript">window.location.href="index.php";</script>';
 }

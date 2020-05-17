@@ -1,3 +1,6 @@
+<?php 
+session_start(); 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +13,9 @@
 	<center>
 <header>
     <h1>Horario</h1>
-    </header>
+    <h3>Introduzca la clave (<strong id="m">M</strong>) de la materia y el codigo (<strong id="p">P</strong>) del profesor para dicha materia al dia y hora correspondiente (puede dejar horas en blanco) </h3>
+</header>
 
-<h3>Introduzca la clave (<strong id="m">M</strong>) de la materia y el codigo (<strong id="p">P</strong>) del profesor para dicha materia al dia y hora correspondiente (puede dejar horas en blanco) </h3>
 <div style="display: inline-flex;">
 
 <div class="hor" id="es"><br>
@@ -29,15 +32,23 @@
 		<option value="7mo">7mo</option>
 		<option value="8vo">8vo</option>
 	</select>
+    <select name="periodo">        
+        <option value="">periodo escolar</option>
+        <option value="enero-junio">Enero-Junio</option>
+        <option value="agosto-diciembre">agosto-diciembre</option>
+    </select>
 
-        , Periodo escolar:<input type="text" name="periodo" placeholder="Enero-Junio 2020" required="true" class="h" id="periodo">, <select name="turno">		
+        <input type="number" name="año" placeholder="año" required="true" class="num"> 
+
+        <select name="turno">		
 		<option value="">Turno</option>
  		<option value="">Vespertino</option>
 		<option value="">Matutino</option>
-	</select><br>
-        
+	</select>
+    <br>
+    <br>
 
-	<table style="width: 100%">
+	<table style="width: 100%" id="tab" class="tab2">
 		<tr>
 			<th style="width: 51px;">HORA</th>
 			<th>LUNES</th>
@@ -70,8 +81,8 @@ $L=0;
 }
 ?>	
 	</table>
-
-<input type="submit" name="button" value="Buscar" class="aceptar">
+<br>
+<input type="submit" name="button" value="Enviar" class="aceptar">
 </form>
 </div>
 
@@ -82,37 +93,41 @@ $L=0;
 
 	<br>
 
-<table >
+<table id="tab" class="tab2">
 			<th colspan="4"><strong id="m">MATERIAS</strong></th>
             <tr>
             	<td style="width: 95px;"><strong id="m">M</strong></td>
                 <td >Nombre</td>
                 <td style="width: 70px;">Creditos</td>
+                <td>Teo...</td>
+                <td>Pra...</td>
                 <td style="width: 75px;">Semestre</td>
             </tr>
-
 <?php 
-    $url="http://127.0.0.1:8181/reinscripciones/materias";
+    $url="http://127.0.0.1:8181/reinscripciones/materias/carreras/".$_SESSION['idCarrera'];
     $json=file_get_contents($url);
     $datos=json_decode($json,true);
     $long=count($datos);
 for ($i=0; $i <$long ; $i++) { 
-	$idMateria=$datos[$i]['idMateria'];
-    $nombre=$datos[$i]['nombre'];
-    $creditos=$datos[$i]['creditos'];
-    $semestre=$datos[$i]['semestre'];
         echo '
             <tr  class="coco">
-            	<td><label>'.$idMateria.'</label></td>
-                <td><label>'.$nombre.'</label></td>
-                <td><label>'.$creditos.'</label></td>
-                <td><label>'.$semestre.'</label></td>
+            	<td><label>'.$datos[$i]['idMateria'].'</label></td>
+                <td><label>'.$datos[$i]['materia'].'</label></td>
+                <td><label>'.$datos[$i]['creditos'].'</label></td>
+                <td><label>'.$datos[$i]['teorica'].'</label></td>
+                <td><label>'.$datos[$i]['practica'].'</label></td>
+                <td><label>'.$datos[$i]['semestre'].'</label></td>
             </tr>';
 }
 ?>
         </table>
+
+
+
+
+
 <br>
-            <table cellspacing="15px">
+            <table cellspacing="15px" id="tab" class="tab2">
             	<th colspan="4"><strong id="p">PROFESORES</strong></th>
                 <tr>
                     <td ><strong id="p">P</strong></td>
@@ -124,16 +139,12 @@ for ($i=0; $i <$long ; $i++) {
     $datos=json_decode($json,true);
     $long=count($datos);
         for ($i=0; $i < $long; $i++) { 
-            $idDocente=$datos[$i]['idDocente'];
-            $nombre=$datos[$i]['nombre'];
-            $apellidoP=$datos[$i]['apellidoP'];
-            $apellidoM=$datos[$i]['apellidoM'];
             echo '
                 <tr class="coco">
-                    <td><label>'.$idDocente.'</label></td>
-                    <td><label>'.$nombre.'</label>
-                    <label>'.$apellidoP.'</label>
-                    <label>'.$apellidoM.'</label></td>
+                    <td><label>'.$datos[$i]['idDocente'].'</label></td>
+                    <td><label>'.$datos[$i]['nombres'].'</label>
+                    <label>'.$datos[$i]['apellidoP'].'</label>
+                    <label>'.$datos[$i]['apellidoM'].'</label></td>
                 </tr>
             ';
 }
