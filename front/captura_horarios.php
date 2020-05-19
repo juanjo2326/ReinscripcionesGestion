@@ -1,10 +1,16 @@
 <?php 
 session_start(); 
 ?>
+<?php 
+$con = $mysql= new mysqli("localhost", "root","", "reinscripciones");
+if ($mysql-> connect_error) {
+    die("problemas con la conexion a la base de datos");
+}
+mysqli_set_charset($con, 'utf8');
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8">
 	<title>Horario</title>
 </head>
 <link rel="stylesheet" type="text/css" href="css/estilos.css">
@@ -20,35 +26,34 @@ session_start();
 
 <div class="hor" id="es"><br>
 
-<form id="formulario" method="get">
-	<select name="semestre">		
-		<option value="">Semestre</option>
- 		<option value="1ro">1ro</option>
-		<option value="2do">2do</option>
-		<option value="3ro">3ro</option>
-		<option value="4to">4to</option>
-		<option value="5to">5to</option>
-		<option value="6to">6to</option>
-		<option value="7mo">7mo</option>
-		<option value="8vo">8vo</option>
-	</select>
+<form id="formulario" method="POST" action="http://127.0.0.1:8181/reinscripciones/horario" enctype="json">
+    <input type="number" name="año" placeholder="año" required="true" class="num"> 
+    <input type="number" name="idCarrera" required="true" class="num" value="1"> 
+    <input type="number" name="idHorario" required="true" class="num" value="2"> 
     <select name="periodo">        
-        <option value="">periodo escolar</option>
+        <option value="">Periodo escolar</option>
         <option value="enero-junio">Enero-Junio</option>
         <option value="agosto-diciembre">agosto-diciembre</option>
     </select>
-
-        <input type="number" name="año" placeholder="año" required="true" class="num"> 
-
-        <select name="turno">		
+    <select name="semestre">        
+        <option value="">Semestre</option>
+        <option value="1ro">1ro</option>
+        <option value="2do">2do</option>
+        <option value="3ro">3ro</option>
+        <option value="4to">4to</option>
+        <option value="5to">5to</option>
+        <option value="6to">6to</option>
+        <option value="7mo">7mo</option>
+        <option value="8vo">8vo</option>
+    </select>
+    <select name="turno">		
 		<option value="">Turno</option>
- 		<option value="">Vespertino</option>
-		<option value="">Matutino</option>
+ 		<option value="v">Vespertino</option>
+		<option value="m">Matutino</option>
 	</select>
-    <br>
-    <br>
-
-	<table style="width: 100%" id="tab" class="tab2">
+    <br><br>
+    
+    <table style="width: 100%" id="tab" class="tab2">
 		<tr>
 			<th style="width: 51px;">HORA</th>
 			<th>LUNES</th>
@@ -57,8 +62,7 @@ session_start();
 			<th>JUEVES</th>
 			<th>VIERNES</th>
 		</tr>
-<?php
-$datos[]="";
+<?php 
 $L=0;
     for ($i=1; $i < 9; $i++) { 
 
@@ -81,17 +85,25 @@ $L=0;
 }
 ?>	
 	</table>
-<br>
 <input type="submit" name="button" value="Enviar" class="aceptar">
-</form>
+
+</form> 
+
+<br>
 </div>
+
+<?php
+$re=$mysql->query("insert into horarios values ($_GET[idHorario]','$_REQUEST[correo]','$_REQUEST[pass]','$_REQUEST[domicilio]','$_REQUEST[cp]','$_REQUEST[telefono]')") or die($mysql-> error);
+$mysql->close();
+header("Location: ../login.php");
+  ?>
+
+
 
 
 
 <div class="hor" id="es2">
-	
-
-	<br>
+<br>
 
 <table id="tab" class="tab2">
 			<th colspan="4"><strong id="m">MATERIAS</strong></th>

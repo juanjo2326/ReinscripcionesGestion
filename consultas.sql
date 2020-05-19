@@ -12,12 +12,10 @@ select * from pago;
 select * from reinscripcion;
 select * from usuarios;
 
-select * from horarios h join dias d on h.idHorario= d.idHorario;
-select * from dias;
+select * from horarios h join dias d join carreras c on d.idHorario=h.idHorario and h.idCarrera= c.idCarrera where año=2020 and periodo="enero-junio" and semestre="8vo" and turno="v" and h.idCarrera=1;
 
-insert into horarios(idHorario, semestre, carrera, turno, año, periodo, idCarrera) 
-values (1, "8vo", 1, "v", 2020, "enero-junio", 1);
-insert into dias(idD, hora, lunes, martes, miercoles, jueves, viernes, idHorario)
-values(1,"7-8", "1","2","3","4","5",1);
+select * from usuarios u join alumnos a join carreras c on u.noControl=a.noControl and a.idCarrera=c.idCarrera where usuario = "jesus" and contra="1234";
+select * from kardex k join materias m join alumnos a on k.noControl=a.noControl and k.idMateria=m.idMateria where k.noControl =16640100 order by m.semestre;
 
-select * from horarios h join dias d join carreras c on h.idHorario=d.idHorario and h.idCarrera=c.idCarrera where   año=2020 and periodo="enero-junio" and semestre="8vo" and turno="v";
+select * from pago p join alumnos a on p.noControl=a.noControl where p.noControl=16640100;
+select * from reinscripcion r join pago p join alumnos a on r.idPago=p.idPago and r.noControl=a.noControl where r.noControl=16640100;
