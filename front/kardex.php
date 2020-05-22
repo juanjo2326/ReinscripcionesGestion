@@ -13,32 +13,56 @@ session_start();
 <body>
     <center>
 	<header>
-		<h1><?php echo $_SESSION['carrera'] ?> </h1>
-    </header>
-    <h1><?php echo $_SESSION['apellidoP'].' '.$_SESSION['apellidoM'].' '.$_SESSION['nombres']; ?></h1>
+    </header>       
+<?php 
+$noControl=0;
+$carrera="";
+$nombre="";
+
+
+if (empty($_SESSION['noControl'])) {
+echo '<form id="formulario" method="get">
+<input type="number" name="idC" value="" placeholder="Numero de control " required="true" class="num"><br><br>
+<input type="submit" name="button" value="Buscar" class="aceptar" >
+<form>';
+if (isset($_GET['idC'])) {
+$noControl=$_GET['idC'];
+}
+}
+
+if (isset($_SESSION['noControl'])) {
+    $noControl=$_SESSION['noControl'];
+    $carrera=$_SESSION['carrera'];
+    $nombre=$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'].' '.$_SESSION['nombres'];
+}
+
+echo '<h1>'.$carrera.'<br>'.$nombre.'</h1>';
+ ?>
     <section>
 <?php 
-    $x=16640100;
-    $url="http://127.0.0.1:8181/reinscripciones/kardex/".$x;
+   if (isset($noControl)) {
+
+    $url="http://127.0.0.1:8181/reinscripciones/kardex/".$noControl;
     $json=file_get_contents($url);
     $datos=json_decode($json,true);
     $long=count($datos);
 
     $se=["1ro","2do","3ro","4to","5to","6to","7mo","8vo"];
   //  echo '<h1>'.$datos[0]['carrera'].'<br>'.$datos[0]['nombres'].'</h1>';
-?>
+if ($long>0) {
+   
 
+?>
 
 <table cellspacing="5px" id="tabkar">
     <tr>
-        
 <?php 
 for ($j=0; $j < 8; $j++) { 
-    
   ?>
 
         <td><section id="kardex">
         <?php echo '<h1 style="color: white;">'.$se[$j].'</h1><div id="kadiv"><br><center> ';
+
         for ($i=0; $i <$long ; $i++) { 
 
         if ($datos[$i]['semestre']==$se[$j]) {    
@@ -57,7 +81,9 @@ if ($datos[$i]['acreditacion']==1) {
                 <td>'.$datos[$i]['creditos'].'</td>
             </tr>
         </table>';
-        }   }
+        }   
+    }
+
         echo "<div></center>";
         ?>
         </section></td>
@@ -68,7 +94,11 @@ if ($datos[$i]['acreditacion']==1) {
 
     </tr>
 </table>
-
+<?php }else{
+        echo "<br><h2>no se encontro ese numero de control</h2><br>";
+    }
+} ?>
 </section></center>
+
 </body>
 </html>

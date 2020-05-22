@@ -6,6 +6,8 @@ select * from cargatem;
 select * from docentes;
 select * from horarios;
 select * from dias;
+delete from dias where idHorario between 2 and 100;
+delete from horarios where idHorario between 2 and 100;
 select * from kardex;
 select * from materias order by idMateria;
 select * from pago;
@@ -19,3 +21,5 @@ select * from kardex k join materias m join alumnos a on k.noControl=a.noControl
 
 select * from pago p join alumnos a on p.noControl=a.noControl where p.noControl=16640100;
 select * from reinscripcion r join pago p join alumnos a on r.idPago=p.idPago and r.noControl=a.noControl where r.noControl=16640100;
+
+select idHorario from horarios order by idHorario desc limit 1 ;

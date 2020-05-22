@@ -17,7 +17,7 @@ session_start();
 <form id="formulario" method="get">
 
 <select name="idC">
-    <option value="">seleccionar Carrera</option>
+    <option value="">Seleccionar Carrera</option>
 <?php 
     $url="http://127.0.0.1:8181/reinscripciones/carreras";
     $json=file_get_contents($url);
@@ -26,8 +26,7 @@ session_start();
         for ($i=0; $i < $long; $i++) { 
             $idCarrera=$datos[$i]['idCarrera'];
             $carrera=$datos[$i]['carrera'];
-            echo '<option value="'.$idCarrera.'">'.$carrera.'</option>
-                ';
+            echo '<option value="'.$idCarrera.'">'.$carrera.'</option>';
 }
 ?>
 </select>   
@@ -62,7 +61,7 @@ for ($i=0; $i <$long2 ; $i++) {
             </tr>';
 }
 }else{
-    echo '<script type="text/javascript"> alert("No hay materias para esa carrera")</script>';
+    echo '<h2> No hay materias para esa carrera</h2><br>';
 }
 }
 ?>

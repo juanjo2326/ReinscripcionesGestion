@@ -1,7 +1,6 @@
 <?php 
 session_start(); 
-?>
-<?php 
+
 $con = $mysql= new mysqli("localhost", "root","", "reinscripciones");
 if ($mysql-> connect_error) {
     die("problemas con la conexion a la base de datos");
@@ -26,10 +25,25 @@ mysqli_set_charset($con, 'utf8');
 
 <div class="hor" id="es"><br>
 
-<form id="formulario" method="POST" action="http://127.0.0.1:8181/reinscripciones/horario" enctype="json">
+<form id="formulario" method="GET">
+    <?php
+    $idCarrera;
+    if (isset($_SESSION['idCarrera'])) {
+        $idCarrera=$_SESSION['idCarrera'];
+    }else{    
+    $urlc="http://127.0.0.1:8181/reinscripciones/carreras";
+    $jsonc=file_get_contents($urlc);
+    $datosc=json_decode($jsonc,true);
+    $longc=count($datosc);
+    echo '<select name="idCarrera">
+    <option value="">Seleccionar Carrera</option>';
+        for ($i=0; $i < $longc; $i++) { 
+            echo '<option value="'.$datosc[$i]['idCarrera'].'">'.$datosc[$i]['carrera'].'</option>';
+        }
+    echo " </select>";
+    }
+      ?>
     <input type="number" name="año" placeholder="año" required="true" class="num"> 
-    <input type="number" name="idCarrera" required="true" class="num" value="1"> 
-    <input type="number" name="idHorario" required="true" class="num" value="2"> 
     <select name="periodo">        
         <option value="">Periodo escolar</option>
         <option value="enero-junio">Enero-Junio</option>
@@ -65,26 +79,19 @@ mysqli_set_charset($con, 'utf8');
 <?php 
 $L=0;
     for ($i=1; $i < 9; $i++) { 
-
     echo '
     <tr class="coco">
     <td><label>'.($i+6).'-'.($i+7).'</label></td>
-    <td><input type="text" name="M-L'.$i.'" placeholder="M-L'.$i.'" class="h" id="m">
-    	<input type="text" name="P-L'.$i.'" placeholder="P-L'.$i.'" class="h" id="p"></td>
-    <td><input type="text" name="M-Ma'.$i.'" placeholder="M-Ma'.$i.'" class="h" id="m">
-    	<input type="text" name="P-Ma'.$i.'" placeholder="P-Ma'.$i.'" class="h" id="p"></td>
-    <td><input type="text" name="M-Mi'.$i.'" placeholder="M-Mi'.$i.'" class="h" id="m">
-    	<input type="text" name="P-Mi'.$i.'" placeholder="P-Mi'.$i.'" class="h" id="p"></td>
-    <td><input type="text" name="M-J'.$i.'" placeholder="M-J'.$i.'" class="h" id="m">
-    	<input type="text" name="P-J'.$i.'" placeholder="P-J'.$i.'" class="h" id="p"></td>
-    <td><input type="text" name="M-V'.$i.'" placeholder="M-V'.$i.'" class="h" id="m">
-    	<input type="text" name="P-V'.$i.'" placeholder="P-V'.$i.'" class="h" id="p"></td>
-    
+    <td><input type="text" name="ML'.$i.'" placeholder="M-L'.$i.'" class="h" id="m">
+    <td><input type="text" name="MMa'.$i.'" placeholder="M-Ma'.$i.'" class="h" id="m">
+    <td><input type="text" name="MMi'.$i.'" placeholder="M-Mi'.$i.'" class="h" id="m">
+    <td><input type="text" name="MJ'.$i.'" placeholder="M-J'.$i.'" class="h" id="m">
+    <td><input type="text" name="MV'.$i.'" placeholder="M-V'.$i.'" class="h" id="m">    
     </tr>
     ';
 }
 ?>	
-	</table>
+	</table><br>
 <input type="submit" name="button" value="Enviar" class="aceptar">
 
 </form> 
@@ -93,13 +100,32 @@ $L=0;
 </div>
 
 <?php
-$re=$mysql->query("insert into horarios values ($_GET[idHorario]','$_REQUEST[correo]','$_REQUEST[pass]','$_REQUEST[domicilio]','$_REQUEST[cp]','$_REQUEST[telefono]')") or die($mysql-> error);
+
+$idH=0;
+   
+$re2=$mysql->query("select idHorario from horarios order by idHorario desc limit 1")or die($mysql-> error);
+
+    while ($f=$re2->fetch_array()) {
+        $idH=$f['idHorario'];
+        $idH=$idH+1;
+        }
+if (isset($_GET['semestre']) &&isset($_GET['turno']) &&isset($_GET['año']) &&isset($_GET['periodo'])) {
+
+$re=$mysql->query("insert into horarios values ($idH,'$_GET[semestre]','$_GET[turno]',$_GET[año],'$_GET[periodo]',$_GET[idCarrera])") or die($mysql-> error);
+
+
+$rec=$mysql->query("insert into dias values (null, '7-8', '$_GET[ML1]', '$_GET[MMa1]', '$_GET[MMi1]', '$_GET[MJ1]', '$_GET[MV1]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '8-9', '$_GET[ML2]', '$_GET[MMa2]', '$_GET[MMi2]', '$_GET[MJ2]', '$_GET[MV2]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '9-10', '$_GET[ML3]', '$_GET[MMa3]', '$_GET[MMi3]', '$_GET[MJ3]', '$_GET[MV3]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '10-11', '$_GET[ML4]', '$_GET[MMa4]', '$_GET[MMi4]', '$_GET[MJ4]', '$_GET[MV4]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '11-12', '$_GET[ML5]', '$_GET[MMa5]', '$_GET[MMi5]', '$_GET[MJ5]', '$_GET[MV5]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '12-13', '$_GET[ML6]', '$_GET[MMa6]', '$_GET[MMi6]', '$_GET[MJ6]', '$_GET[MV6]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '13-14', '$_GET[ML7]', '$_GET[MMa7]', '$_GET[MMi7]', '$_GET[MJ7]', '$_GET[MV7]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '14-15', '$_GET[ML8]', '$_GET[MMa8]', '$_GET[MMi8]', '$_GET[MJ8]', '$_GET[MV8]', $idH)") or die($mysql-> error);
+ 
+}
 $mysql->close();
-header("Location: ../login.php");
-  ?>
-
-
-
+ ?>  
 
 
 <div class="hor" id="es2">
