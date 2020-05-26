@@ -1,8 +1,6 @@
 <?php 
 session_start(); 
-unset($_SESSION['noControl']);
-unset($_SESSION['idCarrera']);
-unset($_SESSION['carrera']);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

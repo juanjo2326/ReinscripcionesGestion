@@ -134,10 +134,13 @@ width: 25%;
 	    width: 50%
 }
 #es2{
-	width: 49%;
+    width: 49%;
     display: inline-block;
     margin-right: 20px;
+    height: 430px;
+    overflow-x: hidden;
 }
+
 #m{
 	color: #ff2e2e;
 }

@@ -39,7 +39,6 @@ $url="http://127.0.0.1:8181/reinscripciones/sesion?usuario=".$_GET['usuario']."&
     $datos=json_decode($json,true);
 
 if ($_GET['usuario']==$datos['usuario'] &&$_GET['contra']==$datos['contra']) {
-
 $_SESSION['noControl']=$datos['noControl'];
 $_SESSION['usuario']=$datos['usuario'];
 $_SESSION['contra']=$datos['contra'];
