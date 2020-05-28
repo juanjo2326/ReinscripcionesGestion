@@ -22,20 +22,22 @@ mysqli_set_charset($con, 'utf8');
     <h3 style="color: white;">Antes de ingresar materias, introduzca los siguientes datos</h3>
 <div> <br>
 <form id="formulario" method="POST">
+    
+    <select name="idCarrera">
+        <option value="">Seleccionar Carrera</option>
     <?php
     $idCarrera;    
     $urlc="http://127.0.0.1:8181/reinscripciones/carreras";
     $jsonc=file_get_contents($urlc);
     $datosc=json_decode($jsonc,true);
+    if ($datosc>0) {    
     $longc=count($datosc);
-    echo '<select name="idCarrera">
-    <option value="">Seleccionar Carrera</option>';
         for ($i=0; $i < $longc; $i++) { 
             echo '<option value="'.$datosc[$i]['idCarrera'].'">'.$datosc[$i]['carrera'].'</option>';
-        }
-    echo " </select>";
-      ?>
-
+        }       
+    }
+    ?> 
+    </select>
     <select name="año">
         <option value="">Año</option>    
         <option value="<?php echo date('Y')+1;?>"><?php echo date("Y")+1;?></option>
@@ -74,10 +76,8 @@ $re2=$mysql->query("select idHorario from horarios order by idHorario desc limit
 
     while ($f=$re2->fetch_array()) {  $idH=$f['idHorario']; $idH=$idH+1;   }
 
-
 if (isset($_REQUEST['semestre'])&&isset($_REQUEST['turno'])&&isset($_REQUEST['año'])&&isset($_REQUEST['periodo'])&&isset($_REQUEST['idCarrera'])) {
   
-
     $re=$mysql->query("insert into horarios values ($idH,'$_REQUEST[semestre]','$_REQUEST[turno]',$_REQUEST[año],'$_REQUEST[periodo]',$_REQUEST[idCarrera])") or die($mysql -> error);
 
         header("Location: ./captura_horarios2.php?idHorario=".$idH);

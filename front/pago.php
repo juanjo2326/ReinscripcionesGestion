@@ -62,8 +62,6 @@ $url="http://127.0.0.1:8181/reinscripciones/alumno/".$noControl."/verificarPago"
                     <td><label>'.$datos['periodo'].'</label></td>
                     </tr> ';
 }
-
-
     
 } catch (Exception $e) {
     echo $e->getMessage();

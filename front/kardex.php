@@ -19,6 +19,13 @@ $noControl=0;
 $carrera="";
 $nombre="";
 
+if (isset($_SESSION['noControl'])) {
+    $noControl=$_SESSION['noControl'];
+    $carrera=$_SESSION['carrera'];
+    $nombre=$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'].' '.$_SESSION['nombres'];
+
+    echo '<h1>'.$carrera.'<br>'.$nombre.'</h1>';
+}
 
 if (empty($_SESSION['noControl'])) {
 echo '<form id="formulario" method="get">
@@ -29,18 +36,10 @@ if (isset($_GET['idC'])) {
 $noControl=$_GET['idC'];
 }
 }
-
-if (isset($_SESSION['noControl'])) {
-    $noControl=$_SESSION['noControl'];
-    $carrera=$_SESSION['carrera'];
-    $nombre=$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'].' '.$_SESSION['nombres'];
-}
-
-echo '<h1>'.$carrera.'<br>'.$nombre.'</h1>';
  ?>
     <section>
 <?php 
-   if (isset($noControl)) {
+   if (isset($noControl)&& $noControl!="") {
 
     $url="http://127.0.0.1:8181/reinscripciones/kardex/".$noControl;
     $json=file_get_contents($url);
@@ -59,10 +58,8 @@ if ($long>0) {
 <?php 
 for ($j=0; $j < 8; $j++) { 
   ?>
-
         <td><section id="kardex">
         <?php echo '<h1 style="color: white;">'.$se[$j].'</h1><div id="kadiv"><br><center> ';
-
         for ($i=0; $i <$long ; $i++) { 
 
         if ($datos[$i]['semestre']==$se[$j]) {    
@@ -83,15 +80,11 @@ if ($datos[$i]['acreditacion']==1) {
         </table>';
         }   
     }
-
         echo "<div></center>";
         ?>
         </section></td>
-
 <?php   
-    
 }  ?>
-
     </tr>
 </table>
 <?php }else{

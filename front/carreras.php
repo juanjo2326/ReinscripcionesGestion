@@ -13,10 +13,7 @@ session_start();
 </head>
 <body>
 	<center>
-    <header>
-<h1>Consulta de Carreras</h1>
-    </header>
-    	
+    <header><h1>Consulta de Carreras</h1></header>
         <br> 
             <table id="tab">
                 <tr>
@@ -26,12 +23,15 @@ session_start();
     $url="http://127.0.0.1:8181/reinscripciones/carreras";
     $json=file_get_contents($url);
     $datos=json_decode($json,true);
+    if ($datos>0) {
     $long=count($datos);
         for ($i=0; $i < $long; $i++) { 
             $carrera=$datos[$i]['carrera'];
             echo '  <tr  class="coco">
                     <td><label>'.$carrera.'</label></td>
-                    </tr> ';
+                    </tr> ';    
+    }
+    
 }
 ?>
 </table>

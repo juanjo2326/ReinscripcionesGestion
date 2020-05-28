@@ -22,11 +22,14 @@ session_start();
     $url="http://127.0.0.1:8181/reinscripciones/carreras";
     $json=file_get_contents($url);
     $datos=json_decode($json,true);
-    $long=count($datos);
+    if ($datos>0) {
+      $long=count($datos);
         for ($i=0; $i < $long; $i++) { 
             $idCarrera=$datos[$i]['idCarrera'];
             $carrera=$datos[$i]['carrera'];
-            echo '<option value="'.$idCarrera.'">'.$carrera.'</option>';
+            echo '<option value="'.$idCarrera.'">'.$carrera.'</option>';    
+    }
+   
 }
 ?>
 </select>   
