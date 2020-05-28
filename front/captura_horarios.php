@@ -80,7 +80,7 @@ if (isset($_REQUEST['semestre'])&&isset($_REQUEST['turno'])&&isset($_REQUEST['aÃ
   
     $re=$mysql->query("insert into horarios values ($idH,'$_REQUEST[semestre]','$_REQUEST[turno]',$_REQUEST[aÃ±o],'$_REQUEST[periodo]',$_REQUEST[idCarrera])") or die($mysql -> error);
 
-        header("Location: ./captura_horarios2.php?idHorario=".$idH);
+        header("Location: ./captura_horarios2.php?idHorario=".$idH."&idCarrera=".$_REQUEST[idCarrera]);
 
 }
 

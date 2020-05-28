@@ -9,10 +9,12 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
+
+
 <body>
 	<center>
     <header><h1>Consulta Reinscripcion</h1></header>	
-        <br> 
+
 <?php
 $noControl=0;
 $carrera="";
@@ -31,33 +33,37 @@ $noControl=$_GET['idC'];
 if (isset($_SESSION['noControl'])) {
     $noControl=$_SESSION['noControl'];
     $carrera=$_SESSION['carrera'];
-    $nombre=$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'].' '.$_SESSION['nombres'];
+    $nombre='<h2>'.$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'].' '.$_SESSION['nombres'].'</h2><br>';
     echo $nombre;
 }
   ?>
+
             <table id="tab">
-                <tr>
-                    <td>noControl</td>
-                    <td>estado</td>
-                    <td>periodo</td>
-                </tr>
 <?php 
+
 if (isset($noControl)&&$noControl!="") {
     
     $url="http://127.0.0.1:8181/reinscripciones/alumno/".$noControl."/verificarReinscripcion";
     $json=file_get_contents($url);
     $datos=json_decode($json,true);
-    if (isset($datos)) {
-        $long=count($datos);
-            echo '  <tr  class="coco">
-                    <td><label>'.$datos['noControl'].'</label></td>
-                    <td><label>'.$datos['estado'].'</label></td>
-                    <td><label>'.$datos['periodo'].'</label></td>
-                    </tr> ';
+
+    $url2="http://127.0.0.1:8181/reinscripciones/alumno/".$noControl."/verificarPago";
+    $json2=file_get_contents($url2);
+    $datos2=json_decode($json2,true);
+
+    if ($datos>0&&$datos2>0) {
+    echo '  
+    <tr class="coco"><td>No. control: </td><td><h3>'.$datos['noControl'].'</h3></td><tr>
+    <tr class="coco"><td>Folio del pago: </td><td><h3>'.$datos2['idPago'].'</h3></td><tr>
+    <tr class="coco"><td>Estado del pago: </td><td><h3>'.$datos2['estado'].'</h3></td><tr>
+    <tr class="coco"><td>Periodo del pago: </td><td><h3>'.$datos2['periodo'].'</h3></td><tr>
+    <tr class="coco"><td>Estado de la reinscripcion: </td><td><h3>'.$datos['estado'].'</h3></td><tr>
+    <tr class="coco"><td>Periodo de la reinscripcion: </td><td><h3>'.$datos['periodo'].'</h3></td><tr>
+
+    ';
     }
 }
 ?>
-</table>
     </center>
 </html>
 

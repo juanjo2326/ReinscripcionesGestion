@@ -24,7 +24,6 @@ mysqli_set_charset($con, 'utf8');
 <div class="hor" id="es">
     <br>
 <form id="formulario" method="POST">
-    
     <table style="width: 100%" id="tab" class="tab2">
 		<tr>
 			<th style="width: 51px;">HORA</th>
@@ -54,24 +53,21 @@ $L=0;
 </form> 
 <?php
 
-if (isset($_GET['idHorario'])) {
+if (isset($_GET['idHorario']) &&isset($_REQUEST['ML1'])) {
 
 $idH=$_GET['idHorario'];
-
-
-if (isset($_GET['ML1'])) {   
-
-$rec=$mysql->query("insert into dias values (null, '7-8', '$_GET[ML1]', '$_GET[MMa1]', '$_GET[MMi1]', '$_GET[MJ1]', '$_GET[MV1]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '8-9', '$_GET[ML2]', '$_GET[MMa2]', '$_GET[MMi2]', '$_GET[MJ2]', '$_GET[MV2]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '9-10', '$_GET[ML3]', '$_GET[MMa3]', '$_GET[MMi3]', '$_GET[MJ3]', '$_GET[MV3]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '10-11', '$_GET[ML4]', '$_GET[MMa4]', '$_GET[MMi4]', '$_GET[MJ4]', '$_GET[MV4]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '11-12', '$_GET[ML5]', '$_GET[MMa5]', '$_GET[MMi5]', '$_GET[MJ5]', '$_GET[MV5]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '12-13', '$_GET[ML6]', '$_GET[MMa6]', '$_GET[MMi6]', '$_GET[MJ6]', '$_GET[MV6]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '13-14', '$_GET[ML7]', '$_GET[MMa7]', '$_GET[MMi7]', '$_GET[MJ7]', '$_GET[MV7]', $idH)") or die($mysql-> error);
-$rec=$mysql->query("insert into dias values (null, '14-15', '$_GET[ML8]', '$_GET[MMa8]', '$_GET[MMi8]', '$_GET[MJ8]', '$_GET[MV8]', $idH)") or die($mysql-> error);
- }
+$rec=$mysql->query("insert into dias values (null, '7-8', '$_REQUEST[ML1]', '$_REQUEST[MMa1]', '$_REQUEST[MMi1]', '$_REQUEST[MJ1]', '$_REQUEST[MV1]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '8-9', '$_REQUEST[ML2]', '$_REQUEST[MMa2]', '$_REQUEST[MMi2]', '$_REQUEST[MJ2]', '$_REQUEST[MV2]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '9-10', '$_REQUEST[ML3]', '$_REQUEST[MMa3]', '$_REQUEST[MMi3]', '$_REQUEST[MJ3]', '$_REQUEST[MV3]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '10-11', '$_REQUEST[ML4]', '$_REQUEST[MMa4]', '$_REQUEST[MMi4]', '$_REQUEST[MJ4]', '$_REQUEST[MV4]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '11-12', '$_REQUEST[ML5]', '$_REQUEST[MMa5]', '$_REQUEST[MMi5]', '$_REQUEST[MJ5]', '$_REQUEST[MV5]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '12-13', '$_REQUEST[ML6]', '$_REQUEST[MMa6]', '$_REQUEST[MMi6]', '$_REQUEST[MJ6]', '$_REQUEST[MV6]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '13-14', '$_REQUEST[ML7]', '$_REQUEST[MMa7]', '$_REQUEST[MMi7]', '$_REQUEST[MJ7]', '$_REQUEST[MV7]', $idH)") or die($mysql-> error);
+$rec=$mysql->query("insert into dias values (null, '14-15', '$_REQUEST[ML8]', '$_REQUEST[MMa8]', '$_REQUEST[MMi8]', '$_REQUEST[MJ8]', '$_REQUEST[MV8]', $idH)") or die($mysql-> error);
+       
+echo '<script type="text/javascript"> alert("Se agrego correctamente"); window.location.href="index.php";</script>';
+ 
 }
-$mysql->close();
  ?>  
 
 </div>
@@ -90,7 +86,7 @@ $mysql->close();
                 <td style="width: 75px;">Semestre</td>
             </tr>
 <?php 
-    $url="http://127.0.0.1:8181/reinscripciones/materias/carreras/".$_SESSION['idCarrera'];
+    $url="http://127.0.0.1:8181/reinscripciones/materias/carreras/".$_GET['idCarrera'];
     $json=file_get_contents($url);
     $datos=json_decode($json,true);
     $long=count($datos);
