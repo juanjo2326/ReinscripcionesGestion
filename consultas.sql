@@ -6,8 +6,9 @@ select * from cargatem;
 select * from docentes;
 select * from horarios;
 select * from dias;
-delete from dias where idHorario between 2 and 100;
+delete from dias where idHorario between 1 and 126;
 delete from horarios where idHorario between 2 and 100;
+select * from horarios h join dias d on d.idHorario=h.idHorario where año=2020 and periodo="enero-junio" and semestre="8vo" and turno="v" and h.idCarrera=1;
 select * from kardex;
 select * from materias order by idMateria;
 select * from pago;
@@ -23,3 +24,4 @@ select * from pago p join alumnos a on p.noControl=a.noControl where p.noControl
 select * from reinscripcion r join pago p join alumnos a on r.idPago=p.idPago and r.noControl=a.noControl where r.noControl=16640100;
 
 select idHorario from horarios order by idHorario desc limit 1 ;
+

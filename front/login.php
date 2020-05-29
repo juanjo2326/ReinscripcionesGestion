@@ -7,14 +7,14 @@ session_start();
 	<meta charset="utf-8"/>
 	<title>Login Alumno</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
-    <header>
-    </header>
+
 	<center>	
    <div id="flog">
-    <br><h1>Bienvenido</h1><br>
+    <br><br><br><br><h1>Bienvenido</h1><br>
     <form id="formulario" method="get" action="">
     <table id="tablog">
         <tr>

@@ -13,16 +13,16 @@ background: linear-gradient(to right, #007db5a1 0%, #0374a7f0 44%, #046c9a 65%, 
 .menu2 {
     width: 96%;
 }
-header li{
-      float : right;
-}
+
 h1{
 	color: #e0d7d7;
 }
 h2{
 	color: #e0d7d7;
 }
-
+h3{
+    color: #e0d7d7;
+}
 select{
 	font-size: 17px;
     border-radius: 10px;
@@ -47,14 +47,7 @@ a{
     font-size: 18px;
         color: #011b18;
 }
-header{
-	width: 100%;
-    height: 80px;
-    color: #dad2d2;
-    background: linear-gradient(to bottom, #001916 5%, #00423b 50%, #07867a1a 99%, #06669017 99%);
 
-;
-}
 #tab tr td{
 	padding: 4px;
 }
@@ -109,6 +102,8 @@ background: linear-gradient(to right, #02564f 0%, hsla(171, 100%, 12%, 1) 69%);
 }
 .num{
   width: 15%;
+  height: 22px;
+    font-size: 16px;
 }.txcorto{
   width: 40%;
 }
@@ -200,14 +195,13 @@ width: 25%;
 }
 
 #flog{
-width: 450px;
-    height: 300px;
-    margin-top: 100px;
-    border-radius: 6px;
+    width: 400px;
+    height: 400px;
+    margin-top: 111px;
+    border-radius: 200px;
     box-shadow: 0px 0px 30px 7px rgba(0, 0, 0, 0.57);
     color: aliceblue;
-    background: linear-gradient(to right, #009688 0%, 
-    	hsla(171, 100%, 12%, 1) 69%);
+    background: linear-gradient(to right, #009688 0%, hsla(171, 100%, 12%, 1) 69%);
 }
 
 #flog table tr:nth-child(even){
@@ -218,10 +212,41 @@ padding: 4px;
 }
 strong{
 	color: red;
-    font-size: 21px;
+    font-size: 20px;
 	text-shadow: 1px 1px 2px hsla(171, 97%, 16%, 0.5);
 }
 .tab2{
 	font-size: 15px;
 	margin-left: 5px;
+}
+.tab3{
+    font-size: 15px;
+}
+
+.tab3 td{
+    border: solid;
+    background-color: #f1f1f1;
+    box-shadow:0px 4px 10px 1px hsla(171, 98%, 9%, 0.41);
+ -webkit-transition: all .5s ease-in-out;
+}
+.tab3 th{
+font-size: 20px;
+}
+
+.tab3 td:hover{
+    -webkit-transform: scale(1.07);
+    box-shadow: 0px 0px 7px 7px #9dcdec8c;   
+}
+#tabkar{
+width: 30%;
+}
+#tabkar2{
+width: 65%;
+    margin-left: 10px;
+    display: inline-block;
+    height: 500px;
+    overflow-x: hidden;
+}
+#tabkar2 td{
+font-size: 14px;
 }

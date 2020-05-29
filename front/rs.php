@@ -7,13 +7,34 @@ session_start();
 	<meta charset="utf-8"/>
 	<title>Reinscripcion</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 
 
 <body>
 	<center>
-    <header><h1>Consulta Reinscripcion</h1></header>	
+    <header>            
+        <nav class="menu2">
+        <ul>
+<?php 
+if (isset($_SESSION['noControl'])) {
+    echo '<a href="cerrar.php"><li>Salir</li></a>';
+}else{
+    echo '<a href="login.php"><li>Login</li></a>';
+}
+ ?>        
+        <a href="kardex.php"><li>Kardex</li></a>
+        <a href="consultar_carga.php"><li>Consultar carga</li></a>
+        <a href="rs.php"><li>Estado de Reinscripcion</li></a>
+        <a href="captura_horario.php"><li>Capturar horarios</li></a>
+        <a href="consulta_horarios.php"><li>Consultar horarios</li></a>
+        <a href="captura_carga.php"><li>Capturar carga</li></a>
+
+        </ul> 
+        </nav>
+    </header>
+<h1>Consulta Reinscripcion</h1>
 
 <?php
 $noControl=0;

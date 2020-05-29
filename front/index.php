@@ -18,32 +18,37 @@ $_SESSION['idCarrera']="";
 	<meta charset="utf-8"/>
 	<title>Index</title>
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+
 	<script type="text/javascript"  href="./js/scripts.js"></script>
 </head>
 <body>
     <center> 
-        <header>
-<h1>Index</h1>
-    </header>   
-         <h1>Bienvenido <?php echo $_SESSION['nombres'].' '.$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'];?></h1>
+    <header>            
         <nav class="menu2">
-        <ul>                
-        <a href="materias.php"><li>materias</li></a>
-        <a href="consultar_carga.php"><li>consultar carga</li></a>
-        <a href="carreras.php"><li>carreras</li></a>           
-        <a href="docentes.php"><li>docentes</li></a>
-        <a href="kardex.php"><li>kardex</li></a>
-        <a href="pago.php"><li>Comprobar pago</li></a>
+        <ul>
+<?php 
+if (isset($_SESSION['noControl'])) {
+    echo '<a href="cerrar.php"><li>Salir</li></a>';
+}else{
+    echo '<a href="login.php"><li>Login</li></a>';
+}
+ ?>        
+        <a href="kardex.php"><li>Kardex</li></a>
+        <a href="consultar_carga.php"><li>Consultar carga</li></a>
         <a href="rs.php"><li>Estado de Reinscripcion</li></a>
-        <a href="login.php"><li>login</li></a>
-        <a href="captura_horarios.php"><li>captura horarios</li></a>
-
-
-
-        <a href="consulta_horarios.php"><li>consultar horarios</li></a>
+        <a href="captura_horario.php"><li>Capturar horarios</li></a>
+        <a href="consulta_horarios.php"><li>Consultar horarios</li></a>
+        <a href="captura_carga.php"><li>Capturar carga</li></a>
 
         </ul> 
         </nav>
+    </header>
+
+<h1>Bienvenido</h1>
+
+
+         <h1>Bienvenido <?php echo $_SESSION['nombres'].' '.$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'];?></h1>
 </center>
 	
 </body>

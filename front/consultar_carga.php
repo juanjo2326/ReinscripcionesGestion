@@ -6,20 +6,38 @@ session_start();
 <head>
 	<title>Carga académica por alumno</title>
 	<meta charset="utf-8">
-    <link rel="shortcut icon" type="image/x-icon" href="./imagenes/logo.jpg">
 	<link rel="stylesheet" type="text/css" href="./css/estilos.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
 </head>
 <body> 
 	<center>
-<header>
-   <h1>Instituto Tecnológico de La Piedad</h1>
-</header>
+    <header>            
+        <nav class="menu2">
+        <ul>
+<?php 
+if (isset($_SESSION['noControl'])) {
+    echo '<a href="cerrar.php"><li>Salir</li></a>';
+}else{
+    echo '<a href="login.php"><li>Login</li></a>';
+}
+ ?>        
+        <a href="kardex.php"><li>Kardex</li></a>
+        <a href="consultar_carga.php"><li>Consultar carga</li></a>
+        <a href="rs.php"><li>Estado de Reinscripcion</li></a>
+        <a href="captura_horario.php"><li>Capturar horarios</li></a>
+        <a href="consulta_horarios.php"><li>Consultar horarios</li></a>
+        <a href="captura_carga.php"><li>Capturar carga</li></a>
+
+        </ul> 
+        </nav>
+    </header>
+
 <form id="formulario" method="get">
     <?php
 
 if (isset($_SESSION['noControl'])) {
     $_GET['idC']=$_SESSION['noControl'];
-    echo '<input type="hidden" name="idC" value="'.$_SESSION['noControl'].'" placeholder="Numero de control " required="true" class="num"><br><br>';
+    echo '<input type="hidden" name="idC" value="'.$_SESSION['noControl'].'" placeholder="Numero de control " required="true" class="num">';
 }else{
         echo '<input type="number" name="idC" value="" placeholder="Numero de control " required="true" class="num"><br><br>';
 }
@@ -74,7 +92,7 @@ for ($i=0; $i <$long ; $i++) {
             </tr>';
 } 
 }else{
-    echo '<script type="text/javascript"> alert("No hay materias")</script>';
+    echo '<script type="text/javascript"> alert("No hay carga académica")</script>';
 } 
 }
 ?>
