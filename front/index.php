@@ -1,16 +1,6 @@
 <?php 
 session_start(); 
-if (empty($_SESSION['noControl'])) {
-    $_SESSION['noControl']="";
-$_SESSION['usuario']="";
-$_SESSION['contra']="";
-$_SESSION['nombres']="";
-$_SESSION['apellidoP']="";
-$_SESSION['apellidoM']="";
-$_SESSION['semestre']="";
-$_SESSION['carrera']="";
-$_SESSION['idCarrera']="";
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -45,10 +35,9 @@ if (isset($_SESSION['noControl'])) {
         </nav>
     </header>
 
-<h1>Bienvenido</h1>
-
-
-         <h1>Bienvenido <?php echo $_SESSION['nombres'].' '.$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'];?></h1>
+<?php if (isset($_SESSION['noControl'])): ?>
+             <h1>Bienvenido <?php echo $_SESSION['nombres'].' '.$_SESSION['apellidoP'].' '.$_SESSION['apellidoM'];?></h1>
+<?php endif ?>
 </center>
 	
 </body>
